@@ -1,0 +1,5 @@
+# @package env
+name: HalfCheetah-v5
+num_envs: 1
+continuous: true
+max_episode_steps: 1000

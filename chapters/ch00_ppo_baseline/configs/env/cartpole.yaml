@@ -1,0 +1,4 @@
+# @package env
+name: CartPole-v1
+num_envs: 4
+continuous: false

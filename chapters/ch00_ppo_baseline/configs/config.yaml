@@ -1,0 +1,26 @@
+# Главный конфиг главы 00. Собирается Hydra из:
+#   base_schema  — dataclass-схема из rlcore.config (типы и дефолты)
+#   env/<name>   — группа сред, выбирается флагом env=cartpole|halfcheetah
+#   _self_       — этот файл поверх всего
+defaults:
+  - base_schema
+  - env: cartpole
+  - _self_
+
+seed: 1
+device: cuda
+total_steps: 100_000
+eval_every: 10_000
+
+# интерполяции: имя прогона и папка логов зависят от среды и сида
+run_name: ${env.name}_s${seed}
+log_dir: runs/00_ppo_baseline/${run_name}
+
+hydra:
+  job:
+    chdir: false                      # cwd остаётся корнем репо (запускаем после scripts/env.sh)
+  run:
+    dir: outputs/00_ppo_baseline/${now:%Y-%m-%d}/${now:%H-%M-%S}_${run_name}
+  sweep:
+    dir: multirun/00_ppo_baseline/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${run_name}
