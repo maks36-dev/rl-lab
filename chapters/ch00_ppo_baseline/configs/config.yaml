@@ -16,11 +16,13 @@ eval_every: 10_000
 run_name: ${env.name}_s${seed}
 log_dir: runs/00_ppo_baseline/${run_name}
 
+# Один прогон = одна папка log_dir: туда же Hydra кладёт свой снимок (hydra/), логгер — tb/, config.yaml, meta.json
 hydra:
   job:
     chdir: false                      # cwd остаётся корнем репо (запускаем после scripts/env.sh)
+  output_subdir: hydra
   run:
-    dir: outputs/00_ppo_baseline/${now:%Y-%m-%d}/${now:%H-%M-%S}_${run_name}
+    dir: ${log_dir}
   sweep:
-    dir: multirun/00_ppo_baseline/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    dir: runs/00_ppo_baseline
     subdir: ${run_name}

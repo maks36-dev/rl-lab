@@ -3,7 +3,7 @@
 runs/
 data/
 wandb/
-outputs/
+outputs/  # (не используется: hydra.run.dir = log_dir)
 multirun/
 *.ckpt
 *.pt
