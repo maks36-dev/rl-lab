@@ -19,6 +19,7 @@ dev = [
   "pytest>=9.0",
   "ruff>=0.16",
   "ipython>=9.0",
+  "ipykernel>=7.3.0",
 ]
 
 # ---- uv: окружение живёт в .venvs/base (см. scripts/env.sh), torch берём с индекса PyTorch под CUDA 13.2
